@@ -110,8 +110,8 @@
       <AssemblyReference>UiPath.Java.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.PDF</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Screenshots the input UiElement at the input resolution, applying scaling if desired, and saves to the input filepath." DisplayName="HighResScreenshot" sap2010:WorkflowViewState.IdRef="Sequence_92">
@@ -185,13 +185,17 @@
         </Assign>
       </If.Else>
     </If>
-    <InvokeMethod DisplayName="Set desired resolution" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="SetResolution">
-      <InvokeMethod.TargetObject>
-        <InArgument x:TypeArguments="sd:Bitmap">[bmp]</InArgument>
-      </InvokeMethod.TargetObject>
-      <InArgument x:TypeArguments="x:Int32">[in_Resolution]</InArgument>
-      <InArgument x:TypeArguments="x:Int32">[in_Resolution]</InArgument>
-    </InvokeMethod>
+    <If sap2010:Annotation.AnnotationText="If none is specified, use the system default." Condition="[in_Resolution&gt;0]" DisplayName="Check resolution specified" sap2010:WorkflowViewState.IdRef="If_5">
+      <If.Then>
+        <InvokeMethod DisplayName="Set desired resolution" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="SetResolution">
+          <InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="sd:Bitmap">[bmp]</InArgument>
+          </InvokeMethod.TargetObject>
+          <InArgument x:TypeArguments="x:Int32">[in_Resolution]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[in_Resolution]</InArgument>
+        </InvokeMethod>
+      </If.Then>
+    </If>
     <Assign DisplayName="Create graphics object" sap2010:WorkflowViewState.IdRef="Assign_41">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:Graphics">[g]</OutArgument>
@@ -257,7 +261,7 @@
       <InArgument x:TypeArguments="sdi:ImageFormat">[System.Drawing.Imaging.ImageFormat.Png]</InArgument>
     </InvokeMethod>
     <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="HighResScreenshot.xaml - End" />
-    <sads:DebugSymbol.Symbol>d0VDOlxVc2Vyc1xDeXJpbFxEb2N1bWVudHNcVWlQYXRoXF9HZW5lcmljXEltYWdlXEhpZ2hSZXNTY3JlZW5zaG90LnhhbWxDdQOFAg4CAQF9BX2VAQIBYH4FggEKAgFbgwEFlQEKAgFSlgEFnQEOAgFOngEFpQEOAgFKpgEFuwEKAgE5vAEFwgEUAgEywwEFygEOAgEuywEF0gEOAgEq0wEF2gEOAgEm2wEF+wEKAgEK/AEFggIUAgEEgwIFgwKTAQIBAn1yfZIBAgFhfhN+RQIBXIABCYABwAECAV6DAV2DAXgCAVOFAQmMARICAVePAQmTARgCAVSbATSbAVwCAVGYATWYATsCAU+jATCjAU0CAU2gATGgATYCAUumAVKmAWMCATqoAQmvARICAUKyAQm5ARICATzBAS3BATwCATfAAS3AATwCATW+ATG+ATYCATPIATPIAUwCATHFATTFATcCAS/QAT3QAW0CAS3NAT7NAVMCASvYATnYAVwCASnVATrVAUsCASfbARPbASQCAQvdAQnuARQCARXxAQn5ARgCAQ2BAjWBAl0CAQmAAi6AAjsCAQf+ATH+ATYCAQWDAnKDApABAgEDgAE4gAGTAQIBX4oBOIoBSQIBWocBOYcBRwIBWJEBOJEBRgIBVa0BNa0BrAECAUWqATaqATsCAUO3ATW3AZoBAgE/tAE2tAE7AgE93gEL5AEjAgEe5QEL7QEaAgEW9wE29wFhAgEU9QEy9QE3AgES+AE5+AFNAgER9gE29gFhAgEQ8wE38wE6AgEO4QFP4QFaAgEk4AFP4AFUAgEi3gG9Ad4BzgECASHiAUbiAVACAR/rATjrAXUCAR3pATTpAT8CARvsATvsAU8CARrqATjqAXUCARnnATnnATwCARc=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0VDOlxVc2Vyc1xDeXJpbFxEb2N1bWVudHNcVWlQYXRoXF9HZW5lcmljXEltYWdlXEhpZ2hSZXNTY3JlZW5zaG90LnhhbWxFdQOJAg4CAQF9BX2VAQIBY34FggEKAgFegwEFlQEKAgFVlgEFnQEOAgFRngEFpQEOAgFNpgEFuwEKAgE8vAEFxgEKAgEyxwEFzgEOAgEuzwEF1gEOAgEq1wEF3gEOAgEm3wEF/wEKAgEKgAIFhgIUAgEEhwIFhwKTAQIBAn1yfZIBAgFkfhN+RQIBX4ABCYABwAECAWGDAV2DAXgCAVaFAQmMARICAVqPAQmTARgCAVebATSbAVwCAVSYATWYATsCAVKjATCjAU0CAVCgATGgATYCAU6mAVKmAWMCAT2oAQmvARICAUWyAQm5ARICAT+8AWW8AXsCATO+AQnEARgCATXMATPMAUwCATHJATTJATcCAS/UAT3UAW0CAS3RAT7RAVMCASvcATncAVwCASnZATrZAUsCASffARPfASQCAQvhAQnyARQCARX1AQn9ARgCAQ2FAjWFAl0CAQmEAi6EAjsCAQeCAjGCAjYCAQWHAnKHApABAgEDgAE4gAGTAQIBYooBOIoBSQIBXYcBOYcBRwIBW5EBOJEBRgIBWK0BNa0BrAECAUiqATaqATsCAUa3ATW3AZoBAgFCtAE2tAE7AgFAwwExwwFAAgE6wgExwgFAAgE4wAE1wAE6AgE24gEL6AEjAgEe6QEL8QEaAgEW+wE2+wFhAgEU+QEy+QE3AgES/AE5/AFNAgER+gE2+gFhAgEQ9wE39wE6AgEO5QFP5QFaAgEk5AFP5AFUAgEi4gG9AeIBzgECASHmAUbmAVACAR/vATjvAXUCAR3tATTtAT8CARvwATvwAU8CARruATjuAXUCARnrATnrATwCARc=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -284,7 +288,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeMethod_2" sap:VirtualizedContainerService.HintSize="579.5,134" />
+      <sap2010:ViewStateData Id="InvokeMethod_2" sap:VirtualizedContainerService.HintSize="218.5,134" />
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="579.5,312">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_41" sap:VirtualizedContainerService.HintSize="579.5,60" />
       <sap2010:ViewStateData Id="Assign_42" sap:VirtualizedContainerService.HintSize="579.5,60" />
       <sap2010:ViewStateData Id="Assign_43" sap:VirtualizedContainerService.HintSize="579.5,60" />
@@ -301,7 +312,7 @@
       <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="579.5,535" />
       <sap2010:ViewStateData Id="InvokeMethod_4" sap:VirtualizedContainerService.HintSize="579.5,134" />
       <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="579.5,93" />
-      <sap2010:ViewStateData Id="Sequence_92" sap:VirtualizedContainerService.HintSize="601.5,2697">
+      <sap2010:ViewStateData Id="Sequence_92" sap:VirtualizedContainerService.HintSize="601.5,2875">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -309,7 +320,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="HighResScreenshot_1" sap:VirtualizedContainerService.HintSize="641.5,2777" />
+      <sap2010:ViewStateData Id="HighResScreenshot_1" sap:VirtualizedContainerService.HintSize="641.5,2995" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
