@@ -1,0 +1,315 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="HighResScreenshot"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing"
+ xmlns:sdd="clr-namespace:System.Drawing.Drawing2D;assembly=System.Drawing"
+ xmlns:sdi="clr-namespace:System.Drawing.Imaging;assembly=System.Drawing"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_UiElement" Type="InArgument(ui:UiElement)" />
+    <x:Property Name="in_SavePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_Resolution" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_Scale" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>HighResScreenshot_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing.Drawing2D</x:String>
+      <x:String>System.Drawing.Imaging</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Credentials.Activities</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.FTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>UiPath.XPS.Activities</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.JSON.Activities</x:String>
+      <x:String>UiPath.REST.Activities</x:String>
+      <x:String>UiPath.SOAP.Activities</x:String>
+      <x:String>UiPath.XML.Activities</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.Credentials.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.FTP.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>UiPath.Java.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Screenshots the input UiElement at the input resolution, applying scaling if desired, and saves to the input filepath." DisplayName="HighResScreenshot" sap2010:WorkflowViewState.IdRef="Sequence_92">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:Rectangle" Name="rect" />
+      <Variable x:TypeArguments="sd:Image" Name="img" />
+      <Variable x:TypeArguments="sd:Bitmap" Name="bmp" />
+      <Variable x:TypeArguments="sd:Graphics" Name="g" />
+      <Variable x:TypeArguments="sd:Image" Name="imgScaled" />
+    </Sequence.Variables>
+    <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="HighResScreenshot.xaml - Start" />
+    <If Condition="[in_SavePath.ToLower.EndsWith(&quot;.png&quot;)]" DisplayName="Check path is .png" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Else>
+        <Throw DisplayName="Throw need .png" Exception="[new System.Exception(&quot;Please save screenshot as .png for higher resolution.&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
+      </If.Else>
+    </If>
+    <If sap2010:Annotation.AnnotationText="If not, screenshot the whole desktop." Condition="[in_UiElement is Nothing]" DisplayName="Check if element is specified" sap2010:WorkflowViewState.IdRef="If_4">
+      <If.Then>
+        <Assign DisplayName="Assign in_UiElement to Desktop" sap2010:WorkflowViewState.IdRef="Assign_47">
+          <Assign.To>
+            <OutArgument x:TypeArguments="ui:UiElement">[in_UiElement]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="ui:UiElement">[new UiElement()]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+      <If.Else>
+        <InvokeMethod DisplayName="Bring UiElement to foreground" sap2010:WorkflowViewState.IdRef="InvokeMethod_6" MethodName="BringToForeground">
+          <InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="ui:UiElement">[in_UiElement]</InArgument>
+          </InvokeMethod.TargetObject>
+        </InvokeMethod>
+      </If.Else>
+    </If>
+    <Assign DisplayName="Get rectangle of ui elt" sap2010:WorkflowViewState.IdRef="Assign_45">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:Rectangle">[rect]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:Rectangle">[in_UiElement.GetAbsolutePosition(true)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Create image from ui elt" sap2010:WorkflowViewState.IdRef="Assign_39">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:Image">[img]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:Image">[new UiPath.Core.Image(rect)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If sap2010:Annotation.AnnotationText="Apply scaling if necessary" Condition="[in_Scale&gt;1]" DisplayName="Create new bitmap" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Assign DisplayName="Create new bitmap" sap2010:WorkflowViewState.IdRef="Assign_46">
+          <Assign.To>
+            <OutArgument x:TypeArguments="sd:Bitmap">[bmp]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="sd:Bitmap">[New System.Drawing.Bitmap(img.Width*in_Scale,img.Height*in_Scale,System.Drawing.Imaging.PixelFormat.Format32bppPArgb)]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+      <If.Else>
+        <Assign DisplayName="Create new bitmap" sap2010:WorkflowViewState.IdRef="Assign_40">
+          <Assign.To>
+            <OutArgument x:TypeArguments="sd:Bitmap">[bmp]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="sd:Bitmap">[New System.Drawing.Bitmap(img.Width,img.Height,System.Drawing.Imaging.PixelFormat.Format32bppPArgb)]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Else>
+    </If>
+    <InvokeMethod DisplayName="Set desired resolution" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="SetResolution">
+      <InvokeMethod.TargetObject>
+        <InArgument x:TypeArguments="sd:Bitmap">[bmp]</InArgument>
+      </InvokeMethod.TargetObject>
+      <InArgument x:TypeArguments="x:Int32">[in_Resolution]</InArgument>
+      <InArgument x:TypeArguments="x:Int32">[in_Resolution]</InArgument>
+    </InvokeMethod>
+    <Assign DisplayName="Create graphics object" sap2010:WorkflowViewState.IdRef="Assign_41">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:Graphics">[g]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:Graphics">[Graphics.FromImage(bmp)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign high res interp mode" sap2010:WorkflowViewState.IdRef="Assign_42">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sdd:InterpolationMode">[g.InterpolationMode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sdd:InterpolationMode">[Drawing2D.InterpolationMode.HighQualityBicubic]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign high res smooth mode" sap2010:WorkflowViewState.IdRef="Assign_43">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sdd:SmoothingMode">[g.SmoothingMode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sdd:SmoothingMode">[Drawing2D.SmoothingMode.AntiAlias]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[in_Scale&gt;1]" DisplayName="Apply scaling if necessary" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Scale &amp; draw" sap2010:WorkflowViewState.IdRef="Sequence_93">
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke ScaleImage workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ScaleImage.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:Image" x:Key="in_OriginalImage">[img]</InArgument>
+              <OutArgument x:TypeArguments="sd:Image" x:Key="out_ScaledImage">[imgScaled]</OutArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_Scale">[in_Scale]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <InvokeMethod DisplayName="Draw scaled image to graphics" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="DrawImage">
+            <InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="sd:Graphics">[g]</InArgument>
+            </InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="sd:Image">[imgScaled]</InArgument>
+            <InArgument x:TypeArguments="sd:Rectangle">[new Rectangle(0,0,rect.Width*in_Scale,rect.Height*in_Scale)]</InArgument>
+            <InArgument x:TypeArguments="sd:Rectangle">[new Rectangle(0,0,rect.Width*in_Scale,rect.Height*in_Scale)]</InArgument>
+            <InArgument x:TypeArguments="sd:GraphicsUnit">[GraphicsUnit.Pixel]</InArgument>
+          </InvokeMethod>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <InvokeMethod DisplayName="Draw image to graphics" sap2010:WorkflowViewState.IdRef="InvokeMethod_5" MethodName="DrawImage">
+          <InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="sd:Graphics">[g]</InArgument>
+          </InvokeMethod.TargetObject>
+          <InArgument x:TypeArguments="sd:Image">[img]</InArgument>
+          <InArgument x:TypeArguments="sd:Rectangle">[new Rectangle(0,0,rect.Width,rect.Height)]</InArgument>
+          <InArgument x:TypeArguments="sd:Rectangle">[new Rectangle(0,0,rect.Width,rect.Height)]</InArgument>
+          <InArgument x:TypeArguments="sd:GraphicsUnit">[GraphicsUnit.Pixel]</InArgument>
+        </InvokeMethod>
+      </If.Else>
+    </If>
+    <InvokeMethod DisplayName="Save image" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="Save">
+      <InvokeMethod.TargetObject>
+        <InArgument x:TypeArguments="sd:Bitmap">[bmp]</InArgument>
+      </InvokeMethod.TargetObject>
+      <InArgument x:TypeArguments="x:String">[in_SavePath]</InArgument>
+      <InArgument x:TypeArguments="sdi:ImageFormat">[System.Drawing.Imaging.ImageFormat.Png]</InArgument>
+    </InvokeMethod>
+    <ui:LogMessage DisplayName="Log message" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="HighResScreenshot.xaml - End" />
+    <sads:DebugSymbol.Symbol>d0VDOlxVc2Vyc1xDeXJpbFxEb2N1bWVudHNcVWlQYXRoXF9HZW5lcmljXEltYWdlXEhpZ2hSZXNTY3JlZW5zaG90LnhhbWxDdQOFAg4CAQF9BX2VAQIBYH4FggEKAgFbgwEFlQEKAgFSlgEFnQEOAgFOngEFpQEOAgFKpgEFuwEKAgE5vAEFwgEUAgEywwEFygEOAgEuywEF0gEOAgEq0wEF2gEOAgEm2wEF+wEKAgEK/AEFggIUAgEEgwIFgwKTAQIBAn1yfZIBAgFhfhN+RQIBXIABCYABwAECAV6DAV2DAXgCAVOFAQmMARICAVePAQmTARgCAVSbATSbAVwCAVGYATWYATsCAU+jATCjAU0CAU2gATGgATYCAUumAVKmAWMCATqoAQmvARICAUKyAQm5ARICATzBAS3BATwCATfAAS3AATwCATW+ATG+ATYCATPIATPIAUwCATHFATTFATcCAS/QAT3QAW0CAS3NAT7NAVMCASvYATnYAVwCASnVATrVAUsCASfbARPbASQCAQvdAQnuARQCARXxAQn5ARgCAQ2BAjWBAl0CAQmAAi6AAjsCAQf+ATH+ATYCAQWDAnKDApABAgEDgAE4gAGTAQIBX4oBOIoBSQIBWocBOYcBRwIBWJEBOJEBRgIBVa0BNa0BrAECAUWqATaqATsCAUO3ATW3AZoBAgE/tAE2tAE7AgE93gEL5AEjAgEe5QEL7QEaAgEW9wE29wFhAgEU9QEy9QE3AgES+AE5+AFNAgER9gE29gFhAgEQ8wE38wE6AgEO4QFP4QFaAgEk4AFP4AFUAgEi3gG9Ad4BzgECASHiAUbiAVACAR/rATjrAXUCAR3pATTpAT8CARvsATvsAU8CARrqATjqAXUCARnnATnnATwCARc=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="579.5,93" />
+      <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="579.5,210" />
+      <sap2010:ViewStateData Id="Assign_47" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="InvokeMethod_6" sap:VirtualizedContainerService.HintSize="218.5,134" />
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="579.5,312">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_45" sap:VirtualizedContainerService.HintSize="579.5,60" />
+      <sap2010:ViewStateData Id="Assign_39" sap:VirtualizedContainerService.HintSize="579.5,60" />
+      <sap2010:ViewStateData Id="Assign_46" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_40" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="579.5,238">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeMethod_2" sap:VirtualizedContainerService.HintSize="579.5,134" />
+      <sap2010:ViewStateData Id="Assign_41" sap:VirtualizedContainerService.HintSize="579.5,60" />
+      <sap2010:ViewStateData Id="Assign_42" sap:VirtualizedContainerService.HintSize="579.5,60" />
+      <sap2010:ViewStateData Id="Assign_43" sap:VirtualizedContainerService.HintSize="579.5,60" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="InvokeMethod_3" sap:VirtualizedContainerService.HintSize="314,134" />
+      <sap2010:ViewStateData Id="Sequence_93" sap:VirtualizedContainerService.HintSize="336,385">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeMethod_5" sap:VirtualizedContainerService.HintSize="218.5,134" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="579.5,535" />
+      <sap2010:ViewStateData Id="InvokeMethod_4" sap:VirtualizedContainerService.HintSize="579.5,134" />
+      <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="579.5,93" />
+      <sap2010:ViewStateData Id="Sequence_92" sap:VirtualizedContainerService.HintSize="601.5,2697">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="HighResScreenshot_1" sap:VirtualizedContainerService.HintSize="641.5,2777" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
